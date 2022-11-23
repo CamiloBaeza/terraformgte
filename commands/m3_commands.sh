@@ -26,7 +26,7 @@ cd globo_web_app
 
 # Now we will follow the standard Terraform workflow
 terraform init
-terraform plan -out m3.tfplan
+terraform plan -out C
 terraform apply "m3.tfplan"
 
 # Got to the Console and get the Public IP address for the EC2 instance

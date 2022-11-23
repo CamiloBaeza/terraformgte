@@ -21,13 +21,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-1
 
-      #- name: Setup Terraform
-      #  uses: hashicorp/setup-terraform@v1
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
 
-      #- name: Terraform Workflow
+      - name: Terraform Workflow
         #working-directory: aws_s3_bucket
-        #run: |
-       #   terraform init
-       #   terraform workspace new ${{ env.environment }}
-       #   terraform workspace select ${{ env.environment }} && terraform plan
-       #   terraform workspace select ${{ env.environment }} && terraform apply -auto-approve
+        run: |
+          terraform init
+          terraform workspace new ${{ env.environment }}
+          terraform workspace select ${{ env.environment }} && terraform plan -out m3.tfplan
+          terraform workspace select ${{ env.environment }} && terraform apply -auto-approve "m3.tfplan"
